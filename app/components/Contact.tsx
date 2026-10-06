@@ -40,6 +40,8 @@ export function Contact() {
             <input
               required
               name="nombre"
+              maxLength={80}
+              autoComplete="name"
               className="mt-2 w-full border border-line bg-transparent px-3 py-3 text-ink outline-none focus:border-moss"
               placeholder="Tu nombre"
             />
@@ -49,6 +51,8 @@ export function Contact() {
             <input
               required
               name="comuna"
+              maxLength={80}
+              autoComplete="address-level2"
               className="mt-2 w-full border border-line bg-transparent px-3 py-3 text-ink outline-none focus:border-moss"
               placeholder="La Florida, Puente Alto..."
             />
@@ -57,6 +61,7 @@ export function Contact() {
             ¿Qué te gustaría trabajar?
             <textarea
               name="mensaje"
+              maxLength={400}
               rows={4}
               className="mt-2 w-full resize-none border border-line bg-transparent px-3 py-3 text-ink outline-none focus:border-moss"
               placeholder="Dolor de rodilla, post operatorio, movilidad..."

@@ -16,13 +16,20 @@ function readContact(
   };
 }
 
+function redirectToWhatsApp(contact: WhatsAppContact, status?: 303) {
+  const url = buildWhatsAppUrl(contact);
+  if (!url.startsWith("https://wa.me/")) {
+    return NextResponse.json({ error: "Destino no permitido." }, { status: 400 });
+  }
+
+  return NextResponse.redirect(url, status);
+}
+
 export function GET(request: NextRequest) {
-  return NextResponse.redirect(
-    buildWhatsAppUrl(readContact(request.nextUrl.searchParams)),
-  );
+  return redirectToWhatsApp(readContact(request.nextUrl.searchParams));
 }
 
 export async function POST(request: NextRequest) {
   const formData = await request.formData();
-  return NextResponse.redirect(buildWhatsAppUrl(readContact(formData)), 303);
+  return redirectToWhatsApp(readContact(formData), 303);
 }
